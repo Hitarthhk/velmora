@@ -1,0 +1,61 @@
+.dot,
+.ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+}
+.ring {
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border-radius: 50%;
+  border: 1px solid rgba(228, 200, 140, 0.55);
+  display: grid;
+  place-items: center;
+  transition:
+    width 0.5s var(--ease-rise),
+    height 0.5s var(--ease-rise),
+    margin 0.5s var(--ease-rise),
+    background 0.5s var(--ease-rise),
+    border-color 0.5s var(--ease-rise);
+}
+.ring[data-state="hover"] {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border-color: var(--gold-bright);
+  background: rgba(201, 164, 92, 0.08);
+}
+.ring[data-state="label"] {
+  width: 96px;
+  height: 96px;
+  margin: -48px 0 0 -48px;
+  border-color: transparent;
+  background: rgba(201, 164, 92, 0.92);
+}
+.ring[data-pressed] {
+  transform-origin: center;
+  scale: 0.88;
+}
+.label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--forest-950);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.ring[data-state="label"] .label {
+  opacity: 1;
+}

@@ -1,0 +1,47 @@
+/* The pour between routes. Hidden until a navigation starts; it then holds
+   the pointer so nothing beneath is clicked mid-transition. */
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 940;
+  display: none;
+}
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.liquid {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 50% at 50% 46%, rgba(240, 178, 96, 0.38), transparent 70%),
+    radial-gradient(120% 90% at 50% 50%, #8f4a14 0%, #4a2208 45%, #1a0b04 100%);
+}
+.veil[data-mode="gl"] .liquid { display: none; }
+.veil[data-mode="css"] .canvas,
+.veil[data-mode="fade"] .canvas { display: none; }
+.mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  opacity: 0;
+}
+.emblem {
+  width: 96px;
+  filter: drop-shadow(0 0 26px rgba(255, 210, 140, 0.45));
+}
+.label {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 40px);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: #fbecd2;
+  text-shadow: 0 2px 22px rgba(40, 14, 2, 0.6);
+}

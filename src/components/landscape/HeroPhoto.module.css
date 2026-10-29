@@ -1,0 +1,119 @@
+.landscape {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  contain: paint;
+}
+.sky,
+.layer,
+.fog,
+.sun,
+.light,
+.scrim {
+  position: absolute;
+  pointer-events: none;
+}
+/* Sampled from the photograph’s sky, so any edge revealed while it moves matches. */
+.sky {
+  inset: 0;
+  background: linear-gradient(180deg, #4275a7 0%, #6a8bab 30%, #c0a182 55%, #2a3138 100%);
+}
+.layer {
+  inset: 0 -6%;
+  transform-origin: 50% 85%;
+}
+.inner {
+  position: absolute;
+  inset: 0;
+}
+/* The image, not its wrappers, is the composited layer: the scroll push-in
+   then scales one decoded bitmap. A scaled wrapper is repainted in tiles at
+   every new scale, which Safari and modest GPUs show as blank rectangles
+   while scrolling. Covers its frame (object-position 50% 45%) without
+   object-fit, so the image can be composited directly. */
+.photo {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: none;
+  translate: -50% -45%;
+  will-change: transform;
+}
+
+/* ---------- Valley mist ---------- */
+.fog {
+  left: -15%;
+  right: -15%;
+}
+.fogHigh {
+  bottom: 36%;
+  height: 22%;
+  opacity: 0.22;
+}
+.fogLow {
+  bottom: 12%;
+  height: 26%;
+  opacity: 0.14;
+}
+.fogBand {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+/* Composited like the photo, so the mist's 1.5× push never repaints. */
+.mist {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: fill;
+  /* Warm the neutral mist to the evening light. */
+  filter: sepia(0.45) saturate(1.3) brightness(1.04);
+  will-change: transform;
+}
+
+/* ---------- Light ---------- */
+/* Last light from the left, where the sky glows in the photograph. */
+.sun {
+  left: -18%;
+  top: -10%;
+  width: 70vmax;
+  height: 55vmax;
+  background: radial-gradient(closest-side, rgba(255, 196, 128, 0.22), rgba(255, 196, 128, 0.06) 50%, transparent);
+  mix-blend-mode: screen;
+}
+.light {
+  inset: 0;
+  opacity: 0.85;
+  mix-blend-mode: soft-light;
+  background:
+    radial-gradient(60% 50% at 18% 30%, rgba(255, 190, 120, 0.35), transparent 70%),
+    linear-gradient(105deg, rgba(255, 200, 140, 0.12) 0%, transparent 45%);
+}
+
+/* ---------- Legibility ---------- */
+/* Darkens only the band behind the copy; the outer peaks and sky keep their glow. */
+.scrim {
+  inset: 0;
+  background:
+    radial-gradient(52% 34% at 50% 40%, rgba(9, 14, 20, 0.62), rgba(9, 14, 20, 0.34) 55%, transparent 100%),
+    linear-gradient(180deg, rgba(9, 14, 20, 0.28) 0%, transparent 30%);
+}
+@media (max-width: 899px) {
+  .scrim {
+    background:
+      radial-gradient(90% 34% at 50% 34%, rgba(9, 14, 20, 0.66), rgba(9, 14, 20, 0.36) 60%, transparent 100%),
+      linear-gradient(180deg, rgba(9, 14, 20, 0.3) 0%, transparent 35%);
+  }
+}
+
+/* Moved or faded on every scroll frame (or breathing): own GPU layers, so
+   the browser composites the change instead of repainting the scene. */
+.sky,
+.sun { will-change: transform; }
+.light,
+.scrim { will-change: opacity; }

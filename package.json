@@ -1,0 +1,37 @@
+{
+  "name": "whisky-experience",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/site.test.mjs tests/camera-dive.lifecycle.test.mjs tests/bottle-readiness.test.mjs tests/bottle-geometry.test.mjs tests/motion-threshold.test.mjs",
+    "test:transition": "node tests/camera-dive.preview.mjs",
+    "test:handoff": "node tests/hero-bottle.preview.mjs",
+    "test:collection": "node tests/collection.preview.mjs",
+    "test:origin": "node tests/collection.preview.mjs --origin",
+    "test:collection:drag": "node tests/collection.preview.mjs --drag"
+  },
+  "dependencies": {
+    "@gsap/react": "2.1.2",
+    "@react-three/drei": "^10.7.6",
+    "@react-three/fiber": "^9.3.0",
+    "gsap": "3.13.0",
+    "lenis": "1.3.11",
+    "motion": "14.7.1",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.18.0",
+    "@types/react": "19.1.12",
+    "@types/react-dom": "19.1.9",
+    "@types/three": "^0.180.0",
+    "playwright-core": "^1.48.2",
+    "typescript": "5.9.2"
+  }
+}

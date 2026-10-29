@@ -1,0 +1,15 @@
+# Collection environments
+
+Generated with the built-in imagegen tool. Environment-only illustrations rendered as photographic material plates; they do not depict a verified distillery, ingredient, maturation vessel or location. Original bottle assets and labels are unchanged.
+
+## Golden Heritage
+
+Asset: `public/media/photography/collection-golden-heritage.webp`
+
+Use case: photorealistic editorial background plate for luxury whisky collection website. Generate one widescreen 16:9 photograph, environment ONLY, absolutely NO bottles, glasses, decanters, labels, typography, logos, food or people. Golden Heritage: intimate dark oak and bronze-toned material setting, deep brown-black weathered oak surface in lower quarter, soft golden amber liquid-like caustic reflections raking gently across the right half, a few out-of-focus crystal-like light refractions at far right edge, rich natural photographic shadows. Very subtle distant Himalayan foothill suggestion through hazy narrow window far upper right, barely discernible and not a mountain illustration. Camera straight on, close material photography with physical lighting. Left 36% very dark quiet empty negative space for ivory product copy; middle and right 64% spacious dark quiet area for two separately composited bottles; brightest amber light only at far edges and lower surface. Restrained atmospheric haze, tactile real oak grain, cinematic photographic realism, softly receding depth, no artificial glow, no geometric illustration, no product pedestal, no bright focal objects. Warm amber, tobacco brown, antique gold, charcoal. Underexpose deliberately, premium editorial photograph, landscape 16:9.
+
+## Midnight Vault
+
+Asset: `public/media/photography/collection-midnight-vault.webp`
+
+Use case: photographic environment background plate for a premium whisky collection website. Create one wide landscape 16:9 photograph of an intimate Midnight Vault material environment ONLY. No bottles, no glasses, no decanters, no logos, no text, no food, no people, no product pedestals. Deep charcoal and slate architectural stone, tactile natural black stone surface in lower quarter, cool silver-blue grazing directional light from upper right, tiny restrained old gold and muted burgundy-rose reflections at far right and lower edge as if from glass outside the frame. Soft atmospheric depth; very faint distant Himalayan ridgeline glimpsed through a narrow dark recess upper right, barely visible, no vector mountains. Composition for a website: left 36 percent nearly black calm negative space for ivory text, middle and right 64 percent uncluttered quiet dark charcoal space for two separately composited original bottles. Brightest details kept at extreme right and bottom edges, no central bright hotspots. Real optical photographic shadows, understated reflections and stone grain, elegant and intimate, not fantasy or sci-fi, no strong beams, no excessive glow or particles, no illustration, no generated products. Distinct cool midnight mood with restrained warm gold and muted rose accents, underexposed editorial luxury material photography, 16:9.

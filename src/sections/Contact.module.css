@@ -1,0 +1,196 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  overflow: clip;
+  background: var(--forest-900);
+}
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: linear-gradient(180deg, var(--forest-900) 0%, rgba(7, 16, 12, 0.35) 45%, rgba(7, 16, 12, 0.75) 100%);
+}
+.inner {
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 48px) var(--gutter) 18vh;
+  display: grid;
+  gap: clamp(40px, 6vw, 96px);
+}
+.section[data-variant="full"] .inner {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: start;
+  padding-bottom: 14vh;
+}
+.copy {
+  display: grid;
+  gap: 24px;
+  align-content: start;
+  max-width: 620px;
+}
+.section[data-variant="compact"] .copy {
+  justify-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+.title {
+  font-size: clamp(46px, 6.4vw, 108px);
+  max-width: 12ch;
+}
+.lede {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--ivory-70);
+  max-width: 34ch;
+}
+.facts {
+  margin: 8px 0 0;
+  display: grid;
+  gap: 14px;
+}
+.facts div {
+  display: grid;
+  gap: 4px;
+}
+.facts dt {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.facts dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--ivory);
+}
+.pending {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ivory-45);
+}
+.ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+@media (max-width: 899px) {
+  .section[data-variant="full"] .inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ───────── Homepage: The Last Light of the Valley ───────── */
+.twilight {
+  display: block;
+  min-height: 0;
+  overflow: visible;
+  background: #07100c;
+  z-index: 1;
+}
+/* Desktop: sits beneath Origin's pinned closing frames, so The Philosophy
+   dissolves straight into this backdrop with no seam. */
+.twilight[data-mode="cinematic"] { margin-top: calc(-100vh - var(--closing)); }
+/* The track spans the section, so the sticky backdrop can never outlive it. */
+.track { position: absolute; inset: 0; }
+.backdrop {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  overflow: clip;
+  background: #0b1424;
+}
+.plate, .horizon, .scrimTwilight, .copper, .dusk, .floor, .feather { position: absolute; inset: 0; }
+.plate { inset: -3%; }
+.plate picture { display: block; width: 100%; height: 100%; }
+.plateImage { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 62%; }
+.plateImage[data-mirrored="true"] { transform: scaleX(-1); }
+/* The last band of sunlight along the far range; it breathes very slowly. */
+.horizon span {
+  position: absolute; left: -10%; right: -10%; top: 18%; height: 34%;
+  background: radial-gradient(50% 50% at 32% 55%, rgba(255, 178, 102, 0.55), rgba(214, 120, 60, 0.18) 55%, transparent 75%);
+  animation: lastLight 22s ease-in-out infinite alternate;
+}
+@keyframes lastLight { from { opacity: 0.75; transform: translateX(-1.5%); } to { opacity: 1; transform: translateX(1.5%); } }
+.mistBand { position: absolute; left: -12%; right: -12%; top: 40%; height: 30%; }
+.mistBand img { width: 100%; height: 100%; max-width: none; object-fit: fill; animation: drift 70s linear infinite alternate; }
+@keyframes drift { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
+.scrimTwilight {
+  background:
+    radial-gradient(48% 46% at 50% 54%, rgba(6, 12, 22, 0.62), rgba(6, 12, 22, 0.18) 70%, transparent),
+    linear-gradient(180deg, rgba(8, 14, 28, 0.55), transparent 28%);
+}
+/* Whisky-copper light carried over from The Philosophy. */
+.copper { background: radial-gradient(80% 90% at 36% 70%, rgba(196, 112, 44, 0.85), rgba(96, 44, 14, 0.75) 55%, rgba(30, 14, 6, 0.9)); }
+/* Night falls into the footer's own colour. */
+.dusk { background: linear-gradient(180deg, #0a1220 0%, #07100c 70%); }
+.floor { top: auto; height: 26%; background: linear-gradient(180deg, transparent, #07100c); }
+.feather { bottom: auto; height: 45%; background: linear-gradient(180deg, #0a1220 0%, rgba(10, 18, 32, 0.7) 40%, transparent); }
+
+.lead { height: 0; }
+.twilight[data-mode="cinematic"] .lead { height: var(--closing); }
+.stageCopy {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: calc(var(--nav-h) + 24px) var(--gutter) 10vh;
+}
+.invite {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 22px;
+  max-width: 900px;
+}
+.twilightTitle {
+  font-size: clamp(56px, 8vw, 132px);
+  line-height: 0.94;
+  letter-spacing: -0.01em;
+  max-width: 11ch;
+  text-shadow: 0 2px 30px rgba(4, 8, 16, 0.55);
+}
+.invite .lede { max-width: 36ch; color: rgba(239, 233, 220, 0.82); text-shadow: 0 1px 16px rgba(4, 8, 16, 0.6); }
+.twilightCtas { margin-top: 10px; }
+.twilightCtas .ctas { margin-top: 0; }
+/* Primary CTA: a quiet warm-gold halo on hover and a firm press on touch.
+   (Magnetic owns the transform; only light and colour change here.) */
+.twilightCtas a { transition: color 0.6s var(--ease-rise), border-color 0.6s var(--ease-rise), box-shadow 0.6s var(--ease-rise); }
+.twilightCtas a:hover, .twilightCtas a:focus-visible { box-shadow: 0 0 0 1px rgba(228, 200, 140, 0.55), 0 14px 44px -14px rgba(236, 176, 96, 0.7); }
+.twilightCtas a:active { box-shadow: 0 0 0 1px rgba(228, 200, 140, 0.8), 0 6px 20px -10px rgba(236, 176, 96, 0.8); }
+.signature { margin-top: 18px; display: grid; justify-items: center; gap: 14px; }
+.factsRow { display: flex; gap: 0; margin: 0; }
+.factsRow div { padding: 0 28px; }
+.factsRow div + div { border-left: 1px solid var(--line); }
+.factsRow dd { font-size: 19px; }
+.duskSpace { height: 25vh; height: 25svh; }
+
+@media (max-width: 899px) {
+  .plateImage { object-position: 42% 50%; }
+  .twilightTitle { font-size: clamp(48px, 13vw, 76px); }
+  .factsRow { flex-direction: column; gap: 14px; }
+  .factsRow div { padding: 0; }
+  .factsRow div + div { border-left: 0; }
+  .horizon span { top: 22%; height: 26%; }
+  .mistBand img { animation: none; }
+  .duskSpace { height: 15svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .horizon span, .mistBand img { animation: none; }
+}

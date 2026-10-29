@@ -1,0 +1,53 @@
+.section { position: relative; background: #142221; }
+/* Desktop: the section pins over the collection's settled hold (the bridge
+   segment) instead of sliding up beneath it. Transparent until its valley has
+   grown in; it passes clicks to the collection until then. */
+.section[data-mode="cinematic"] {
+  z-index: 3;
+  background: transparent;
+  margin-top: calc(-100vh - var(--origin-bridge, 40vh));
+  pointer-events: none;
+}
+/* It holds clicks only between covering the collection and dissolving into Contact. */
+.section[data-mode="cinematic"][data-veiled="true"]:not([data-released="true"]) .stage { pointer-events: auto; }
+.section[data-released="true"] .chapter { pointer-events: none; }
+.feather { position: absolute; left: 0; right: 0; pointer-events: none; }
+.featherTop { top: 0; height: 38%; background: linear-gradient(180deg, #0d0f0e 0%, rgba(13, 15, 14, 0.6) 45%, transparent); }
+.featherBottom { bottom: 0; height: 45%; opacity: 0; background: linear-gradient(0deg, #0a1220 0%, rgba(10, 18, 32, 0.7) 40%, transparent); }
+.stage { position: relative; height: 100vh; height: 100svh; overflow: clip; }
+.arrival { position: absolute; inset: 0; }
+.label { position: absolute; z-index: 3; top: calc(var(--nav-h) + 32px); left: var(--gutter); color: var(--gold-bright); text-shadow: 0 2px 18px #071015; }
+.ticks { position: absolute; z-index: 3; right: var(--gutter); top: 50%; translate: 0 -50%; list-style: none; margin: 0; padding: 0 0 0 18px; display: grid; gap: 42px; font-family: var(--font-display); font-size: 18px; color: rgba(239,233,220,0.65); border-left: 1px solid var(--ivory-15); }
+.ticks li[aria-current="step"] { color: var(--gold-bright); }
+.progress { position: absolute; left: -1px; top: 0; width: 1px; height: 100%; background: var(--gold); transform-origin: top; }
+.progressTrack { position: absolute; inset: 0; list-style: none; }
+.chapters { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.chapter { position: absolute; left: var(--gutter); top: 50%; translate: 0 -46%; max-width: min(620px, 49vw); display: grid; gap: 22px; visibility: hidden; pointer-events: auto; }
+.numeral { font-size: clamp(90px, 12vw, 170px); color: transparent; -webkit-text-stroke: 1px rgba(201,164,92,0.65); line-height: 0.8; }
+.title { font-size: clamp(48px, 6vw, 96px); }
+.body { font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 26px); font-weight: 300; line-height: 1.45; color: rgba(239,233,220,0.91); max-width: 34ch; text-shadow: 0 2px 18px rgba(4,11,13,0.5); }
+.section[data-mode="simple"] .stage { position: sticky; top: 0; }
+.section[data-mode="simple"] .chapters { position: relative; margin-top: -100svh; }
+.section[data-mode="simple"] .chapter { position: relative; left: auto; top: auto; translate: none; max-width: none; min-height: 100svh; padding: 0 calc(var(--gutter) + 55px) 0 var(--gutter); align-content: center; visibility: visible; }
+@media (max-width: 899px) {
+  .title { font-size: clamp(42px, 8vw, 64px); line-height: 1.05; }
+  .numeral { font-size: clamp(76px, 15vw, 120px); }
+  .body { font-size: clamp(20px, 3vw, 24px); }
+  .chapter { gap: 18px; }
+  .ticks { right: 18px; gap: 26px; font-size: 16px; padding-left: 12px; }
+  .label { top: calc(var(--nav-h) + 24px); }
+}
+@media (max-height: 620px) and (min-width: 900px) {
+  .numeral { font-size: 90px; }
+  .title { font-size: 60px; }
+  .chapter { gap: 14px; top: 54%; }
+  .body { font-size: 22px; }
+  .label { top: calc(var(--nav-h) + 12px); }
+}
+@media (max-height: 620px) and (max-width: 899px) {
+  .label { top: 24px; }
+  .section[data-mode="simple"] .chapter { padding-top: 58px; padding-bottom: 44px; gap: 10px; }
+  .numeral { font-size: 56px; }
+  .title { font-size: 42px; max-width: 62%; }
+  .body { font-size: 18px; max-width: 58%; }
+}

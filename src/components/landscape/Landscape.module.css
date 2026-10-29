@@ -1,0 +1,66 @@
+.landscape {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  contain: paint;
+}
+.sky,
+.sun,
+.clouds,
+.layer,
+.fog {
+  position: absolute;
+  pointer-events: none;
+}
+.sky {
+  inset: -10% 0 0;
+}
+.sun {
+  left: 50%;
+  top: 38%;
+  width: 90vmax;
+  height: 60vmax;
+  transform: translate(-50%, -30%);
+}
+.clouds {
+  inset: 0 -20% 40%;
+}
+.cloud {
+  position: absolute;
+  display: block;
+  aspect-ratio: 4 / 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(231, 226, 212, 0.18), rgba(231, 226, 212, 0) 70%);
+  filter: blur(18px);
+  will-change: transform;
+}
+.layer {
+  inset: 0 -6%;
+  transform-origin: 50% 85%;
+  will-change: transform;
+}
+.inner {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.fog {
+  left: -20%;
+  right: -20%;
+  height: 34%;
+  will-change: transform, opacity;
+}
+.fogBand {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(214, 216, 204, 0.55), rgba(214, 216, 204, 0) 70%);
+  filter: blur(24px);
+}

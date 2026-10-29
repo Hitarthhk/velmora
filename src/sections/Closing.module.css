@@ -1,0 +1,36 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  overflow: clip;
+  background: var(--forest-900);
+}
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: linear-gradient(180deg, var(--charcoal) 0%, rgba(7, 16, 12, 0.2) 40%, rgba(7, 16, 12, 0.6) 100%);
+}
+.copy {
+  position: relative;
+  z-index: 30;
+  display: grid;
+  gap: 32px;
+  justify-items: center;
+  text-align: center;
+  padding: 0 var(--gutter);
+  margin-bottom: 18vh;
+}
+.title {
+  font-size: clamp(46px, 7vw, 120px);
+  max-width: 14ch;
+}
+.ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}

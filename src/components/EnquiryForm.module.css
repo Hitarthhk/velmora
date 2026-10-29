@@ -1,0 +1,120 @@
+.form {
+  display: grid;
+  gap: 26px;
+  padding: clamp(28px, 3.4vw, 52px);
+  background: rgba(7, 16, 12, 0.72);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.title {
+  font-size: clamp(30px, 2.6vw, 42px);
+}
+.notice {
+  padding: 12px 16px;
+  border: 1px dashed rgba(201, 164, 92, 0.6);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--gold);
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+}
+.field {
+  display: grid;
+  gap: 8px;
+}
+.field > span:first-child {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 0;
+  font: inherit;
+  font-size: 16px;
+  color: var(--ivory);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ivory-15);
+  border-radius: 0;
+  transition: border-color 0.4s var(--ease-rise);
+}
+.field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%);
+  background-position: calc(100% - 10px) 50%, calc(100% - 5px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+.field select option {
+  color: var(--forest-950);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--gold-bright);
+}
+.field [aria-invalid="true"] {
+  border-bottom-color: #d98a7a;
+}
+.error {
+  font-size: 12px;
+  color: #e3a493;
+}
+.actions {
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+.submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  height: 56px;
+  padding: 0 32px;
+  border-radius: 999px;
+  background: var(--ivory);
+  color: var(--forest-950);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition: background 0.5s var(--ease-rise);
+}
+.submit:hover,
+.submit:focus-visible {
+  background: var(--gold-bright);
+}
+.submit svg {
+  width: 22px;
+}
+.submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.status {
+  min-height: 1.6em;
+  font-size: 13px;
+  color: var(--ivory-70);
+}
+.status[data-kind="preview"],
+.status[data-kind="error"] {
+  color: var(--gold-bright);
+}
+
+@media (max-width: 599px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

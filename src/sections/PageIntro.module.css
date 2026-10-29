@@ -1,0 +1,26 @@
+.intro {
+  position: relative;
+  height: 88vh;
+  height: 88svh;
+  overflow: hidden;
+  overflow: clip;
+  background: var(--forest-900);
+}
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: linear-gradient(0deg, var(--forest-950), transparent 50%);
+}
+.copy {
+  position: absolute;
+  z-index: 30;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 14vh;
+  display: grid;
+  gap: 20px;
+}
+.title {
+  font-size: clamp(60px, 11vw, 180px);
+}

@@ -1,0 +1,67 @@
+.environment,
+.landscape {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: paint;
+}
+.photo {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.framing,
+.shade,
+.amber,
+.retreat {
+  position: absolute;
+  inset: 0;
+}
+/* Scrims support the photograph; they do not replace it with a flat backdrop. */
+.framing {
+  background:
+    radial-gradient(ellipse at 50% 56%, rgba(9, 16, 23, 0.15), transparent 58%),
+    linear-gradient(90deg, rgba(6, 12, 18, 0.28), transparent 36%, transparent 64%, rgba(6, 12, 18, 0.28));
+}
+.shade { background: #0c1822; }
+.amber {
+  background: radial-gradient(ellipse at 16% 28%, #daa76b, transparent 68%);
+}
+.mist {
+  position: absolute;
+  left: -12%;
+  right: -12%;
+  bottom: -7%;
+  height: 37%;
+}
+.mist img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: fill;
+}
+.retreat { background: var(--forest-900); }
+@media (max-width: 899px) {
+  .environment {
+    background: #0c1822;
+    mask-image: linear-gradient(180deg, transparent, #000 22%, #000 88%, transparent);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 22%, #000 88%, transparent);
+  }
+  .photo {
+    object-position: 58% 50%;
+  }
+  .mist { height: 25%; }
+}
+
+/* Faded or moved on every scroll frame: each is its own GPU layer, so the
+   browser applies the change instead of repainting the showcase. Chrome on
+   Mac could not always finish that repaint when GPU memory ran short and
+   dropped the valley for a frame. */
+.landscape,
+.shade,
+.amber,
+.retreat { will-change: opacity; }
+.mist { will-change: transform, opacity; }

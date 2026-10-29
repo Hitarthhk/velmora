@@ -1,0 +1,197 @@
+.section {
+  --stage-from: var(--forest-800);
+  --stage-to: var(--forest-900);
+  position: relative;
+  background: var(--stage-to);
+}
+.section,
+.stage,
+.stack,
+.showcase,
+.gallery {
+  /* The global reduced-motion duration must not implicitly animate responsive
+     layout changes. GSAP and Motion own all intended animated properties. */
+  transition-property: none;
+}
+.stage {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  overflow: clip;
+  background: radial-gradient(90% 70% at 50% 55%, var(--stage-from), var(--stage-to) 70%);
+}
+.section[data-handoff="true"] .stage { background: transparent; }
+.section[data-handoff="true"] {
+  z-index: 1;
+  background: transparent;
+}
+.section[data-handoff="true"][data-mode="cinematic"] {
+  /* Share the hero's stage: its pin reserves no extra spacer in linked mode.
+     All showcase cue positions stay intact; the same pin includes the final
+     collection hold before releasing to Story. */
+  margin-top: -100svh;
+}
+.section[data-handoff="true"][data-mode="simple"] { margin-top: 0; }
+@media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+  .section[data-handoff="true"][data-mode="simple"] { margin-top: -24svh; }
+  .section[data-handoff="true"][data-mode="simple"] .stage { height: 104svh; }
+  .section[data-handoff="true"][data-mode="simple"] .object { top: 14svh; }
+  /* 100 - 24 + 104 = 180svh: preserve the original handoff's total layout
+     height and its 90svh bottle viewport; only the scenery blend grows. */
+}
+.mist {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 45% at 50% 85%, rgba(200, 204, 190, 0.5), transparent 70%),
+    linear-gradient(180deg, var(--stage-to) 0%, transparent 40%);
+}
+.section[data-handoff="true"] .mist {
+  background: radial-gradient(70% 45% at 50% 90%, rgba(174, 186, 194, 0.18), transparent 70%);
+}
+.halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(70vh, 80vw);
+  aspect-ratio: 1;
+  margin: calc(min(70vh, 80vw) / -2) 0 0 calc(min(70vh, 80vw) / -2);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(228, 200, 140, 0.32), rgba(201, 164, 92, 0.08) 55%, transparent);
+  pointer-events: none;
+}
+.object {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+.visualLayer { position: absolute; inset: 0; }
+.showcase { position: relative; height: 100%; }
+.gallery { position: relative; }
+.section[data-mode="cinematic"] .gallery { position: absolute; inset: 0; z-index: 2; }
+.section[data-gallery-linked="true"][data-mode="cinematic"] .showcase { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.section[data-gallery-linked="true"][data-mode="cinematic"] .object { pointer-events: none; }
+.section[data-gallery-linked="true"][data-mode="cinematic"] .canvas { pointer-events: var(--bottle-pointer, auto); }
+.section[data-gallery-linked="true"][data-mode="cinematic"] [data-bottle-gpu] { pointer-events: var(--bottle-pointer, auto) !important; }
+.section[data-gallery-linked="true"][data-mode="cinematic"] .canvas * { pointer-events: inherit !important; }
+.section[data-gallery-linked="true"][data-mode="simple"] .stage { height: auto; overflow: visible; }
+.section[data-gallery-linked="true"][data-mode="simple"] .stack { padding-bottom: 48px; background: linear-gradient(180deg, transparent 65%, #11171d); }
+.section[data-mode="simple"] .showcase { height: 90svh; }
+@media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+  .section[data-handoff="true"][data-mode="simple"] .showcase { height: 104svh; }
+}
+.section[data-handoff="true"][data-mode="cinematic"] .svg { max-width: 42vw; }
+.flat {
+  position: absolute;
+  inset: 14% 0;
+  display: flex;
+  justify-content: center;
+}
+.svg {
+  height: 100%;
+  width: auto;
+  filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5));
+}
+.step {
+  position: absolute;
+  z-index: 4;
+  display: grid;
+  gap: 20px;
+  visibility: hidden;
+}
+.center {
+  z-index: 2;
+  inset: 0;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+}
+.giant {
+  font-size: clamp(64px, 12vw, 210px);
+  color: rgba(239, 233, 220, 0.9);
+  max-width: 11ch;
+}
+.intro {
+  right: var(--gutter);
+  top: 50%;
+  translate: 0 -50%;
+  width: min(360px, 22vw);
+  gap: 18px;
+  text-shadow: 0 2px 24px rgba(4, 10, 17, 0.75);
+}
+.introTitle {
+  font-size: clamp(32px, 3.4vw, 52px);
+  line-height: 1.08;
+  color: var(--ivory);
+}
+.introBody {
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.6;
+  color: rgba(239, 233, 220, 0.88);
+}
+.right {
+  right: var(--gutter);
+  top: 50%;
+  translate: 0 -50%;
+  width: min(420px, 34vw);
+}
+.left {
+  left: var(--gutter);
+  top: 50%;
+  translate: 0 -50%;
+  width: min(420px, 34vw);
+}
+.title {
+  font-size: clamp(38px, 4.4vw, 68px);
+}
+.body {
+  color: var(--ivory-70);
+  max-width: 38ch;
+}
+.section[data-handoff="true"] .body {
+  color: rgba(239, 233, 220, 0.86);
+  text-shadow: 0 2px 18px rgba(5, 10, 16, 0.8);
+}
+
+/* ---------- Simple layout (phones, reduced motion) ---------- */
+.stack {
+  display: none;
+}
+.section[data-mode="simple"] .stage {
+  height: 90svh;
+}
+.section[data-handoff="true"][data-mode="simple"] .svg { max-width: 88vw; }
+.section[data-mode="simple"] .step {
+  display: none;
+}
+.section[data-mode="simple"] .halo {
+  opacity: 1;
+}
+.section[data-mode="simple"] .mist {
+  background: linear-gradient(180deg, var(--stage-to), transparent 35%);
+}
+.section[data-handoff="true"][data-mode="simple"] .mist { background: none; }
+.section[data-mode="simple"] .stack {
+  display: grid;
+  gap: 72px;
+  padding: 40px var(--gutter) 120px;
+}
+.stackItem {
+  display: grid;
+  gap: 16px;
+  max-width: 560px;
+}
+
+/* Scrubbed on every scroll frame: own GPU layers, composited rather than
+   repainted (see BottleValley.module.css). */
+.visualLayer { will-change: opacity; }
+.mist,
+.halo,
+.step { will-change: transform, opacity; }

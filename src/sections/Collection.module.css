@@ -1,0 +1,225 @@
+.section {
+  --accent: #0f3326;
+  position: relative;
+  background: #11171d;
+}
+.section[data-embedded="true"] { background: transparent; min-height: 100svh; }
+/* Flow/reduced layouts have no showcase progress. Their final readable state
+   must also survive a responsive change while LazyMotion is loading. */
+.section[data-embedded="false"] [data-alpine-gallery],
+.section[data-embedded="false"] [data-collection-details],
+.section[data-embedded="false"] [data-collection-controls],
+.section[data-embedded="false"] [data-card-item] > div,
+.section[data-embedded="false"] .copy,
+.section[data-embedded="false"] .cardMeta { opacity: 1 !important; transform: none !important; }
+.copy,
+.selection { display: grid; gap: 22px; }
+.models { opacity: 0; }
+.modelsReady { opacity: 1; transition: opacity 0.25s; }
+.tilt { transition: opacity 0.25s; }
+.section[data-embedded="true"] .card:hover { transform: none; }
+.stage {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  overflow: clip;
+  display: grid;
+  grid-template-columns: minmax(340px, 34vw) minmax(0, 1fr);
+  align-items: stretch;
+}
+.details {
+  position: relative;
+  z-index: 3;
+  padding: calc(var(--nav-h) + 24px) var(--gutter) 56px;
+  display: grid;
+  gap: 22px;
+  align-content: center;
+  background: linear-gradient(90deg, rgba(12, 17, 23, 0.92) 70%, transparent);
+}
+.name {
+  font-size: clamp(40px, 3.8vw, 72px);
+}
+.descriptor {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--gold-bright);
+}
+.notes {
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.notes div {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ivory-15);
+}
+.notes dt {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.notes dd {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ivory-70);
+}
+.ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* ---------- The pair ---------- */
+.pair {
+  position: relative;
+  display: grid;
+  align-items: center;
+  padding: calc(var(--nav-h) + 24px) var(--gutter) 56px clamp(20px, 3vw, 56px);
+}
+/* Optional WebGL layer sits behind the cards and is aligned to them. */
+.models {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.track {
+  position: relative;
+  z-index: 2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.6vw, 44px);
+  max-width: 900px;
+  width: 100%;
+  margin-inline: auto;
+}
+.cardItem {
+  min-width: 0;
+}
+.card {
+  width: 100%;
+  height: min(74vh, 660px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid var(--ivory-15);
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(239, 233, 220, 0.04), rgba(239, 233, 220, 0));
+  text-align: left;
+  touch-action: pan-y;
+  transition:
+    border-color 0.6s var(--ease-rise),
+    background 0.6s var(--ease-rise),
+    transform 0.8s var(--ease-rise);
+}
+.card:hover {
+  border-color: var(--line);
+  transform: translateY(-6px);
+}
+.card[data-active="true"] {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, rgba(201, 164, 92, 0.12), rgba(201, 164, 92, 0));
+}
+.cardStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  perspective: 900px;
+  min-height: 0;
+}
+.tilt {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+}
+.cardBottle {
+  min-height: 0;
+  height: 100%;
+  max-height: 52vh;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45));
+}
+.cardMeta {
+  display: grid;
+  gap: 4px;
+}
+.cardName {
+  font-size: clamp(24px, 2.2vw, 32px);
+}
+.cardSub {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(239, 233, 220, 0.72);
+}
+
+/* ---------- Simple: stacked, pair above the details ---------- */
+.section[data-mode="simple"] .stage {
+  grid-template-columns: 1fr;
+  padding: 88px 0 72px;
+  gap: 32px;
+}
+.section[data-mode="simple"] .details {
+  background: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  order: 2;
+}
+.section[data-mode="simple"] .pair {
+  padding: 0 var(--gutter);
+}
+.section[data-mode="simple"] .card {
+  height: auto;
+  grid-template-rows: min(46svh, 400px) auto;
+  padding: 16px 14px;
+  gap: 12px;
+}
+.section[data-mode="simple"] .cardName {
+  font-size: 22px;
+}
+.section[data-mode="simple"] .cardSub {
+  letter-spacing: 0.14em;
+}
+.section[data-linked="true"][data-mode="simple"] .stage { padding-top: 40px; }
+@media (min-width: 900px) and (max-width: 1199px) {
+  .details { padding: calc(var(--nav-h) + 12px) 26px 24px; gap: 16px; }
+  .selection, .copy { gap: 16px; }
+  .name { font-size: 36px; }
+  .notes div { grid-template-columns: 60px 1fr; gap: 12px; }
+  .ctas { gap: 8px; }
+  .ctas a { padding-inline: 22px; height: 48px; }
+}
+@media (min-width: 900px) and (max-height: 740px) {
+  .section[data-embedded="true"] .details { gap: 14px; padding-top: calc(var(--nav-h) + 12px); padding-bottom: 24px; }
+  .section[data-embedded="true"] .copy,
+  .section[data-embedded="true"] .selection { gap: 14px; }
+  .section[data-embedded="true"] .name { font-size: clamp(32px, 3.3vw, 48px); }
+  .section[data-embedded="true"] .notes { gap: 8px; }
+  .section[data-embedded="true"] .notes div { padding-bottom: 8px; }
+  .section[data-embedded="true"] .ctas a { height: 44px; padding-inline: 22px; }
+}
+
+.photoPose { display: grid; place-items: center; height: 100%; min-height: 0; width: 100%; }
+.selectionMark { height: 1px; width: 28px; background: var(--gold-bright); transform-origin: left; position: absolute; bottom: -10px; left: 0; }
+.cardMeta { position: relative; isolation: isolate; }
+.cardMeta::before { content: ""; position: absolute; z-index: -1; inset: -24px -24px -24px; background: linear-gradient(180deg, transparent, rgba(8, 10, 13, 0.8)); pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .card:hover { transform: none; } }

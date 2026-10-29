@@ -1,0 +1,48 @@
+/* A quiet pill in the corner: a single line that becomes a breath of wind. */
+.toggle {
+  position: fixed;
+  z-index: 780;
+  right: calc(var(--gutter) - 6px);
+  bottom: 22px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(7, 16, 12, 0.42);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ivory-70);
+  transition: border-color 0.5s var(--ease-rise), color 0.5s var(--ease-rise), background 0.5s var(--ease-rise);
+}
+.toggle:hover,
+.toggle:focus-visible { border-color: var(--gold); color: var(--ivory); background: rgba(7, 16, 12, 0.62); }
+.toggle:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+.toggle[data-on="true"] { color: var(--gold-bright); }
+.glyph { width: 26px; height: 13px; overflow: visible; }
+.glyph path { fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; transition: opacity 0.6s var(--ease-rise), transform 0.6s var(--ease-rise); transform-origin: center; }
+.still { opacity: 1; }
+.wave { opacity: 0; transform: scaleY(0.2); }
+.toggle[data-on="true"] .still { opacity: 0; }
+.toggle[data-on="true"] .wave { opacity: 1; transform: scaleY(1); }
+/* The label opens on hover/focus only, so the control stays minimal. */
+.label {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: max-width 0.6s var(--ease-rise);
+}
+.toggle:hover .label,
+.toggle:focus-visible .label { max-width: 90px; }
+@media (max-width: 899px) {
+  .toggle { bottom: 16px; right: 16px; }
+}
+@media (hover: none) {
+  .label { display: none; }
+}
